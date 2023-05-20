@@ -9,7 +9,6 @@ resource "random_string" "suffix" {
   special = false
 }
 
-
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "3.19.0"
@@ -37,4 +36,10 @@ module "vpc" {
     org    = "urbanpillar",
     author = "ashutosh/rakesh"
   }
+
+  tags = {
+    Terraform = "true"
+    Environment = "dev"
+  }
+
 }
