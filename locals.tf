@@ -1,6 +1,5 @@
 locals {
   vpc_name = "urbanpillar-vpc-${random_string.suffix.result}"
-  ecs_cluster_name ="urbanpillar-cluster"
   tags = {
     name="urbanpillar"
     org = "kaycomm"
@@ -8,4 +7,5 @@ locals {
   }
   ecs_cluster_tags = local.tags
   ingress_rules = [80,22]
+  create_task_definition=true
 }
