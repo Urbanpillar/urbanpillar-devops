@@ -139,3 +139,13 @@ variable "service_image_tag" {
   type        = string
   default     = "latest"
 }
+variable "lambda_function_backend_name" {
+  description = "Lambda function for backend service"
+  type        = string
+  default     = "lambda_register_backend_ecstaskdefinition"
+}
+variable "lambda_function_service_name" {
+  description = "Lambda function for frontend service"
+  type        = string
+  default     = "lambda_register_service_ecstaskdefinition"
+}
