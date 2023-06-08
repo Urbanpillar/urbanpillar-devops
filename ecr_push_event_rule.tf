@@ -13,10 +13,11 @@ resource "aws_cloudwatch_event_rule" "ecr_push_rule_backend" {
         "action-type": ["PUSH"],
         "result": ["SUCCESS"],
         "repository-name": ["urbanpillar-backend"],
-        "image-tag": ["latest", ""]
+        "image-tag": ["latest"]
          }
     }
     EOF
+    tags = local.tags
 }
 ################################################################################
 # Defining event target service for backend rule
@@ -42,10 +43,11 @@ resource "aws_cloudwatch_event_rule" "ecr_push_rule_service" {
         "action-type": ["PUSH"],
         "result": ["SUCCESS"],
         "repository-name": ["urbanpillar"],
-        "image-tag": ["latest", ""]
+        "image-tag": ["latest"]
         }
     }
     EOF
+    tags = local.tags
 }
 ################################################################################
 # Defining event target service for frontend rule

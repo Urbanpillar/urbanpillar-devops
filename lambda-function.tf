@@ -17,6 +17,7 @@ resource "aws_lambda_function" "lambda_function_backend" {
     runtime = "python3.10"
     handler = "ambda_function.lambda_handler"
     timeout = 10
+    tags = local.tags
 }   
 resource "aws_lambda_function" "lambda_function_service" {
     role = aws_iam_role.lambda_role.arn
@@ -26,4 +27,5 @@ resource "aws_lambda_function" "lambda_function_service" {
     runtime = "python3.10"
     handler = "ambda_function.lambda_handler"
     timeout = 10
+    tags = local.tags
 }   

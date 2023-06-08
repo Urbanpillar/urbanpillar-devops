@@ -22,7 +22,7 @@ module "ecs_cluster" {
     }
   }
 
-  tags = local.ecs_cluster_tags
+  tags = local.tags
 }
 
 data "aws_ssm_parameter" "fluentbit" {
