@@ -37,13 +37,13 @@ variable "ecs_service_memory" {
 variable "ecs_service_backend_cpu" {
   description = "ECS Backend Service CPU"
   type        = number
-  default     = 1024
+  default     = 2048
 }
 
 variable "ecs_service_backend_memory" {
   description = "ECS Backend Service Memory"
   type        = number
-  default     = 4096
+  default     = 8192
 }
 
 variable "ecs_container_name" {
@@ -69,12 +69,12 @@ variable "ecs_backend_container_name" {
 variable "ecs_backend_container_port" {
   description = "ECS backend Container Port"
   type        = number
-  default     = 80
+  default     = 4000
 }
 variable "ecs_backedn_container_hostport" {
   description = "ECS Backend Container Hostport"
   type        = number
-  default     = 80
+  default     = 4000
 }
 
 variable "ecs_alb_name" {
