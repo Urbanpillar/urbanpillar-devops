@@ -30,8 +30,8 @@ module "ecs_service_backend" {
     }
 
     (var.ecs_backend_container_name) = {
-      cpu       = 512
-      memory    = 1024
+      cpu       = 1024
+      memory    = 2048
       essential = true
       image     = "${var.image_uri}/${var.service_backend_repo_name}:${var.service_image_tag}"
       port_mappings = [
@@ -40,6 +40,8 @@ module "ecs_service_backend" {
           containerPort = var.ecs_backend_container_port
           hostPort      = var.ecs_backedn_container_hostport
           protocol      = "tcp"
+          appProtocol="http"
+          
         }
       ]
 
@@ -70,6 +72,7 @@ module "ecs_service_backend" {
     }
   }
 
+
   subnet_ids = module.vpc.private_subnets
   security_group_rules = {
     alb_ingress_3000 = {
@@ -97,6 +100,7 @@ module "alb_backend" {
   version = "8.6.0"
 
   name = var.ecs_backend_alb_name
+  internal = true
   load_balancer_type = "application"
 
   vpc_id          = module.vpc.vpc_id
@@ -113,10 +117,19 @@ module "alb_backend" {
 
   target_groups = [
     {
-      name             = "${var.ecs_backend_alb_tg_name}-${var.ecs_backend_container_name}"
+      name             = var.ecs_backend_alb_tg_name
       backend_protocol = "HTTP"
       backend_port     = var.ecs_backend_container_port
       target_type      = "ip"
+      health_check = {
+        path                = "/api/v1"
+        protocol            = "HTTP"
+        port                = "traffic-port"
+        interval            = 30
+        timeout             = 10
+        healthy_threshold   = 3
+        unhealthy_threshold = 3
+      }
     },
   ]
 
