@@ -100,7 +100,6 @@ module "alb_backend" {
   version = "8.6.0"
 
   name = var.ecs_backend_alb_name
-  internal = true
   load_balancer_type = "application"
 
   vpc_id          = module.vpc.vpc_id
