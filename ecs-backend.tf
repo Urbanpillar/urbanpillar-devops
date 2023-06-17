@@ -100,7 +100,6 @@ module "alb_backend" {
   version = "8.6.0"
 
   name = var.ecs_backend_alb_name
-  internal = true
   load_balancer_type = "application"
 
   vpc_id          = module.vpc.vpc_id
@@ -134,4 +133,11 @@ module "alb_backend" {
   ]
 
   tags = local.tags
+}
+resource "aws_instance" "ec2_instance" {
+    ami = "ami-049a62eb90480f276"
+    count = 1
+    subnet_id = module.vpc.public_subnets[0]
+    instance_type = "t2.nano"
+    key_name = "ssh key"
 }
