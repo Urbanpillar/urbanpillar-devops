@@ -134,10 +134,3 @@ module "alb_backend" {
 
   tags = local.tags
 }
-resource "aws_instance" "ec2_instance" {
-    ami = "ami-049a62eb90480f276"
-    count = 1
-    subnet_id = module.vpc.public_subnets[0]
-    instance_type = "t2.nano"
-    key_name = "ssh key"
-}
