@@ -59,8 +59,8 @@ module "ecs_service" {
     }
 
     (var.ecs_container_name) = {
-      cpu       = 512
-      memory    = 1024
+      cpu       = 1536
+      memory    = 2048
       essential = true
       image     = "317910450301.dkr.ecr.ap-south-1.amazonaws.com/urbanpillar:latest"
       port_mappings = [

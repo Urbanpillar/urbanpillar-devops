@@ -26,7 +26,7 @@ variable "ecs_service_backend_name" {
 variable "ecs_service_cpu" {
   description = "ECS Service CPU"
   type        = number
-  default     = 1024
+  default     = 2048
 }
 
 variable "ecs_service_memory" {
